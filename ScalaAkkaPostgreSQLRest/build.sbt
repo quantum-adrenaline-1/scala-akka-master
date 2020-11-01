@@ -4,7 +4,7 @@ lazy val akkaVersion    = "2.6.10"
 lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
-      organization    := "com.example",
+      organization    := "com.postgres_rest",
       scalaVersion    := "2.13.3"
     )),
     name := "ScalaAkkaPostgreSQLRest",
