@@ -6,6 +6,7 @@ import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import akka.util.Timeout
+import com.postgres_rest.template_defaults.UserRegistry.{ActionPerformed, CreateUser, DeleteUser, GetUserResponse, GetUsers, GetUser}
 
 import scala.concurrent.Future
 
@@ -19,9 +20,9 @@ class UserRoutes(userRegistry: ActorRef[UserRegistry.Command])(implicit val syst
   //#import-json-formats
 
   // If ask takes more time than this to complete the request is failed
-  private implicit val timeout = Timeout.create(system.settings.config.getDuration("my-app.routes.ask-timeout"))
+  private implicit val timeout: Timeout = Timeout.create(system.settings.config.getDuration("my-app.routes.ask-timeout"))
 
-  def getUsers(): Future[Users] =
+  def getUsers: Future[Users] =
     userRegistry.ask(GetUsers)
   def getUser(name: String): Future[GetUserResponse] =
     userRegistry.ask(GetUser(name, _))
@@ -40,7 +41,7 @@ class UserRoutes(userRegistry: ActorRef[UserRegistry.Command])(implicit val syst
         pathEnd {
           concat(
             get {
-              complete(getUsers())
+              complete(getUsers)
             },
             post {
               entity(as[User]) { user =>
