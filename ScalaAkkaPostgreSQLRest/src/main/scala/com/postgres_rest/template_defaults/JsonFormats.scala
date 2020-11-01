@@ -1,14 +1,15 @@
 package com.postgres_rest.template_defaults
 
-import spray.json.DefaultJsonProtocol
+import com.postgres_rest.template_defaults.UserRegistry.ActionPerformed
+import spray.json.{DefaultJsonProtocol, RootJsonFormat}
 
 object JsonFormats {
   // import the default encoders for primitive types (Int, String, Lists etc)
 
   import DefaultJsonProtocol._
 
-  implicit val userJsonFormat = jsonFormat3(User)
-  implicit val usersJsonFormat = jsonFormat1(Users)
+  implicit val userJsonFormat: RootJsonFormat[User] = jsonFormat3(User)
+  implicit val usersJsonFormat: RootJsonFormat[Users] = jsonFormat1(Users)
 
-  implicit val actionPerformedJsonFormat = jsonFormat1(ActionPerformed)
+  implicit val actionPerformedJsonFormat: RootJsonFormat[ActionPerformed] = jsonFormat1(ActionPerformed)
 }
