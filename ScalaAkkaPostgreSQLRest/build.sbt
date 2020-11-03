@@ -65,7 +65,7 @@ lazy val root = (project in file(".")).
           "org.postgresql"    % "postgresql"                % postgreSqlVersion,
           "org.flywaydb"      % "flyway-core"               % "7.0.4",
 
-          "ch.qos.logback"    %  "logback-classic"          % "1.2.3",
+//          "ch.qos.logback"    %  "logback-classic"          % "1.2.3",
 
           "io.circe"          %% "circe-core"               % circeVersion,
           "io.circe"          %% "circe-generic"            % circeVersion,
